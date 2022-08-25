@@ -1,8 +1,10 @@
 package manager.services;
 
 import manager.models.Employer;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,9 +15,7 @@ public class BonusServiceTest {
         Employer employer = new Employer("vinicius", LocalDate.now(), new BigDecimal(10001));
         BonusService sut = new BonusService();
 
-        BigDecimal bonus = sut.calculateBonus(employer);
-
-        Assertions.assertEquals(new BigDecimal("0.00"), bonus);
+        assertThrows(IllegalArgumentException.class, () -> sut.calculateBonus(employer));
     }
 
     @Test()
@@ -25,7 +25,7 @@ public class BonusServiceTest {
 
         BigDecimal bonus = sut.calculateBonus(employer);
 
-        Assertions.assertEquals(new BigDecimal("250.00"), bonus);
+        assertEquals(new BigDecimal("250.00"), bonus);
     }
 
     @Test()
@@ -35,6 +35,6 @@ public class BonusServiceTest {
 
         BigDecimal bonus = sut.calculateBonus(employer);
 
-        Assertions.assertEquals(new BigDecimal("1000.00"), bonus);
+        assertEquals(new BigDecimal("1000.00"), bonus);
     }
 }
