@@ -14,19 +14,11 @@ public class Employer {
         this.salary = salary;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getAdmissionDate() {
-        return admissionDate;
-    }
-
     public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
+    public void readjustSalary(BigDecimal readjust) {
+        this.salary = this.salary.add(readjust);
     }
 }

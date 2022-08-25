@@ -8,13 +8,7 @@ import java.math.BigDecimal;
 
 public class SalaryReadjustmentService {
     public void execute(@NotNull Employer employer, @NotNull Performance performance) {
-        BigDecimal newSalary = employer
-                .getSalary()
-                .add(
-                        employer.getSalary().multiply(
-                                performance.percentageReadjustment()
-                        )
-                );
-        employer.setSalary(newSalary);
+        BigDecimal newSalary = employer.getSalary().multiply(performance.percentageReadjustment());
+        employer.readjustSalary(newSalary);
     }
 }
